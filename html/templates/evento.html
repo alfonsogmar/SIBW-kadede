@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Evento: {{event_title}}{% endblock %}
+
+{% block user %}<h3>Bienvenido {{user}}, Disfruta tu estancia</h3>{% endblock %}
+
+{% block alltags %}
+<div id="tag-menu">
+	<h3>Etiquetas de este evento</h3>
+	{% for t in tags %}
+		<div class="tag-box">
+			<a class="tag-link" href="index.php?page=eventos_etiqueta&tag={{t.id}}">{{t.name}}</a>
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}
+
+
+{% block main %}
+
+	<!-- Informacion sobre el evento -->
+
+	<h2 id=event-title>{{event_title}}</h2>
+	<h3>Organizado por: {{event_creator}}</h3>
+	<h4>Fecha y hora del evento: {{event_date}} a las {{event_time}}</h4>
+	<h4>Fecha y hora de la última modificacion: {{event_dateM}} a las {{event_timeM}}</h4>
+
+	<!-- Fotos del evento -->
+	<div class="img-wrap" >
+		<figure class="thumbnail-imagenEvento">
+			<img alt={{image_name1}} class="imagenEvento" src={{image_path1}} >
+			<figcaption class="event-text">{{image_txt1}}</figcaption>
+			<figcaption class="eventC-text"><a href={{image_pathcredit1}}>{{image_credit1}}</a></figcaption>
+		</figure>
+		<figure class="thumbnail-imagenEvento">
+			<img alt={{image_name2}} class="imagenEvento" src={{image_path2}} >
+			<figcaption class="event-text">{{image_txt2}}</figcaption>
+			<figcaption class="eventC-text"><a href={{image_pathcredit2}}>{{image_credit2}}</a></figcaption>
+
+		</figure>
+
+	</div>
+
+	<div id="galeria">
+		<a href="#" class="close">&times;</a>
+		<span id="imgDescripcion">Galería de imágenes</span>
+		<ul id="imgLista">
+			{% for imagen in galeria %}
+				<li><a onclick="return mostrarGaleria(this)" href={{imagen.path}} title={{imagen.txtpie}}>{{imagen.id}}</a></li>
+			{% endfor %}
+		</ul>
+		<img id="imgContenedor" src={{image_path1}} />
+	</div>
+	<div id="mask" onclick="document.location='#';">
+	</div>
+
+	<div id="galeriaVideos">
+		<a href="#" class="close">&times;</a>
+		<span id="videosDescripcion">Galería de Videos</span>
+		<ul id="videosLista">
+			{% for video in videos %}
+				<li><a onclick="return mostrarGaleriaVideos(this)" href={{video.path}} title={{video.name}}>{{video.id}}</a></li>
+
+			{% endfor %}
+		</ul>
+		<iframe id="videosContenedor" width="560" height="315" src="https://www.youtube.com/embed/P9MnwfHCuDI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+	<div id="maskVideos" onclick="document.location='#';">
+	</div>
+
+	<!-- Descripción del evento -->
+	<div id=event-description>
+	{% for parag in event_body%}
+		<p>{{parag}}</p>
+	{% endfor %}
+	</div>
+
+	<!-- Botones sociales y de impresion -->
+	<script>
+		var textoT="Se publicará en Twitter el siguiente mensaje:";
+		var textoF="Se publicará en Facebook el siguiente mensaje:";
+		var textoI="Se publicará en Instagram el siguiente mensaje:";
+		var textoEnlace="    {{event_title}}";
+		var textoVia="    Via @KaDeDe.es\n";
+	</script>
+
+	<div class="event-buttons">
+		<h3> ¿Te gusta este evento? </h3>
+		<p>¡Compártelo en tus redes sociales o imprímelo! </p>
+		<div class="button-thumbnails">
+			<div class="thumbnail-botonEvento">
+				<a href="javascript:afoto('./images/{{event_enlace}}','Publicar en Twitter',textoT,textoEnlace,textoVia)">
+					<img alt="Twitter" class="botonEvento" src="./images/Twitter.png" >
+				</a>
+			</div>
+			<div class="thumbnail-botonEvento">
+				<a href="javascript:afoto('./images/{{event_enlace}}','Publicar en Facebook',textoF,textoEnlace,textoVia)">
+					<img alt="Facebook" class="botonEvento" src="./images/Facebook.png" >
+				</a>
+			</div>
+			<div class="thumbnail-botonEvento">
+				<a href="javascript:afoto('./images/{{event_enlace}}','Publicar en Instagram',textoI,textoEnlace,textoVia)">
+					<img alt="Instagram" class="botonEvento" src="./images/instagram.png" >
+				</a>
+			</div>
+			<div class="thumbnail-botonEvento">
+				<a href="./index.php?page=evento_imprimir&event={{event_id}}">
+					<img alt="Imprimir" class="botonEvento" src="./images/impresora.png" >
+				</a>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="galery-buttons">
+	<!--
+		<a href="#galeria" id="open-gallery" class="fancy-button">Galeria de fotos</a>
+		<a href="#galeriaVideos" id="open-gallery" class="fancy-button">Galeria de Videos</a>
+	-->
+	<a href="#galeria" class="fancy-button">Galeria de fotos</a>
+	<a href="#galeriaVideos" class="fancy-button">Galeria de Videos</a>
+	</div>
+
+	<!-- Caja desplegable de comentarios -->
+	<div class="comentarios">
+		<button class="fancy-button" id="ocultar" href="javascript:void(0)" onclick="ocultar();ocultarBoton();">Ocultar comentarios</button>
+		<button class="fancy-button" id="mostrar" href="javascript:void(0)" onclick="mostrar();mostrarBoton();">Mostrar comentarios</button>
+		<div id="cajaComentarios">
+			<div id="comments" >
+				{% for comentario in comentarios %}
+					<div class="comment">
+						<p class="comment-header"> El {{comentario.date}} a las {{comentario.time}}, {{comentario.name}} escribió: </p>
+						{% for parag in comentario.description %}
+							<p>{{parag}}</p>
+						{% endfor %}
+					</div>
+				{% endfor %}
+
+			</div>
+			{% if is_registered %}
+			<form name="comment-form" id="comment-frm" method="post" action="index.php">
+<!--
+				Nombre <br>
+				<input id="nombreComentario" name="nombre" type="text" size="30" required onkeyup="this.value=validarN(this.value)"> <br>
+				Email <br>
+				<input id="emailComentario" name="email" type="text"  size="30" required onkeyup="this.value=validarE(this.value)"> <br>
+-->
+				¡Haz un comentario sobre este evento! <br>
+				<textarea  id="textoComentario" name="textarea" type="text" required onkeyup="this.value=validarT(this.value)"></textarea> <br>
+				<input name="event" value={{event_id}} hidden>
+				<input name="page" value={{page}} hidden>
+				<input class="fancy-button" name="submit-button" type="submit" value="Enviar">
+				<input class="fancy-button" type="reset" value="Borrar">
+			</form>
+			{% elseif anon %}
+			<h4 id="registered-users-only-warning">¡Regístrate en kadede.es o inicia sesión para añadir comentarios a los eventos!</h4>
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}

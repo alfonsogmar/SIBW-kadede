@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="Kadede, quedar, deporte, ocio, salir, salidas, quedada, quedadas">
+		<meta name"description" content="Kadede">
+		<title>Kadede | Imprimir: {{event_title}}</title>
+		<link rel="stylesheet" type="text/css" href="./css/printable.css"/>
+	</head>
+
+	<body id="imprimible"> <!-- Informacion relevante de la pagina de impresion -->
+		<div class="dinA4">
+
+			<header class="headerImprimible"> <!-- Cabecera de la pagina de impresion -->
+				<h1><a href="./portada.html" id="printable-main-title">kadede.es</a></h1>
+				<a href="./index.php"><img src="../images/logo_black.png" id="printable-logo" /></a>
+				<h3 id="sloganImprimible">Tu mejor web para crear y unirte a quedadas</h3>
+			</header>
+
+			<div class="main-contentImprimible"> <!-- Datos del evento preparados para la impresion -->
+
+				<h2 class="h2Imprimible">{{event_title}}</h2>
+				<h3 class="h3Imprimible">Organizado por: {{event_creator}}</h3>
+				<h4 class="h4Imprimible">Fecha y hora del evento: {{event_date}} a las {{event_time}}</h4>
+				<h4 class="h4Imprimible">Fecha y hora de la última modificación: {{event_dateM}} a las {{event_timeM}}</h4>
+
+
+				<div id="left">
+					{% for parag_l in event_body_left %}
+						<p class="pImprimible">{{parag_l}}</p>
+					{% endfor %}
+				</div>
+				<div id="right">
+					{% for parag_r in event_body_right %}
+						<p class="pImprimible">{{parag_r}}</p>
+					{% endfor %}
+				</div>
+
+			</div>
+
+			<div class="img-wrap" > <!-- Contenedor de las imagenes del evento, nombre de la misma y copyright -->
+				<figure class="thumbnail-imagenEvento">
+					<img alt="Miniatura" class="imagenImprimibleIzq" src="./images/{{event_thumbnail}}" >
+				</figure>
+			</div>
+
+			<div>
+				<h4 class="h4Imprimible">URLs de videos</h4>
+				{% for video in event_videos %}
+					<p>{{video.path}}</p>
+				{% endfor %}
+			</div>
+
+			<footer class="footerImprimible"> <!-- pie de pagina de impresion con los datos de la web -->
+				<address id="contactImprimible">Correo de contacto: info@kadede.es</address>
+				<small id="copyrightImprimible">2019 Kadede. All rights reserved.</small>
+			</footer>
+		</div>
+	</body>
+
+</html>

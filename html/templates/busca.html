@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Búsqueda{% endblock %}
+
+{% block main %}
+	<h2>¿Buscas un evento en concreto?</h2>
+	<br>
+	<form name="search-form" method="post" action="index.php">
+		<input name="search" placeholder="Buscar" type="search" onkeyup="searchEvent(this.value)"></input> <br>
+	</form>
+
+	<ul id="search-list">
+
+	</ul>
+
+	<p id="search-response"></p>
+
+{% endblock %}

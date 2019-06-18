@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Evento: {{general_title}}{% endblock %}
+
+{% block main %}
+
+	<!-- Informacion sobre el evento -->
+
+	<h2>{{general_title}}</h2>
+
+	{% for parag in general_body%}
+		<p>{{parag}}</p>
+	{% endfor %}
+
+{% endblock %}

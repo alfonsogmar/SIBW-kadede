@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Buscar comentario{% endblock %}
+
+
+
+{% block main %}
+	<h2>Buscar comentario</h2>
+	<form name="search-comment-form" method="post" action="index.php">
+		<input name="search-comment-text" type="text"></input> <br>
+		<input class="fancy-button" name="search-comment-submit" type="submit" value="Buscar">
+		<input class="fancy-button" type="reset" value="Borrar">
+	</form>
+{% endblock %}

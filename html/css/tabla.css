@@ -1,0 +1,70 @@
+/*body{
+	font-family: arial;
+	font-size: 12px;
+} */
+
+.tabla input, textarea{
+	border: 1px solid #999999;
+	border-radius: 3px;
+}
+
+.tabla input{
+	height: 20px;
+}
+
+.tabla {
+	border: solid #ccc 1px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 1px 1px #ccc;
+	-moz-box-shadow: 0 1px 1px #ccc;
+	box-shadow: 0 1px 1px #ccc;
+}
+
+
+
+.tabla tr:hover {
+	/*background: #fbf8e9;*/
+	background: #feecd8;
+	-o-transition: all 0.1s ease-in-out;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+
+
+.tabla td, .tabla th {
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 10px;
+	text-align: left;
+	vertical-align: top;
+}
+
+
+
+.tabla th {
+	background-color: #dce9f9;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+	background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image:	 -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image:	 -o-linear-gradient(top, #ebf3fc, #dce9f9);
+	background-image:		 linear-gradient(top, #ebf3fc, #dce9f9);
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.<img src='http://www.solvetic.com/public/style_emoticons/default/smile.png' class='bbc_emoticon' alt='8)' /> inset;
+	-moz-box-shadow:0 1px 0 rgba(255,255,255,.<img src='http://www.solvetic.com/public/style_emoticons/default/smile.png' class='bbc_emoticon' alt='8)' /> inset;
+	box-shadow: 0 1px 0 rgba(255,255,255,.<img src='http://www.solvetic.com/public/style_emoticons/default/smile.png' class='bbc_emoticon' alt='8)' /> inset;
+	border-top: none;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+.oculto{
+	display: none;
+}
+
+.visible{
+	display: block,
+}

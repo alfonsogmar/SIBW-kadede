@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Editar comentario{% endblock %}
+
+
+{% block user %}<!--<h3>Bienvenido {{user}}, Disfruta tu estancia</h3>-->{% endblock %}
+
+
+{% block main %}
+	<h2>Editar comentario</h2>
+	<form name="edit-comment-form" method="post" action="index.php">
+		<textarea  id="textoComentario" name="edit-comment-text" type="text">{{comment_text}}</textarea> <br>
+		<input name="edit-comment-id" value={{comment_id}} hidden>
+		<input class="fancy-button" name="submit-button" type="submit" value="Editar">
+		<input class="fancy-button" type="reset" value="Restaurar">
+	</form>
+{% endblock %}

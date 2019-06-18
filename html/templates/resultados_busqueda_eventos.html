@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados de la búsqueda: {{searched}}{% endblock %}
+
+{% block main %}
+<h2>Resultados de la búsqueda</h2>
+
+<div class="container home">
+	<form action="index.php" method="post">
+		<input name="page" value="panel" hidden>
+		<!-- Input para saber que se intenta hacer en el panel -->
+		<!-- -1 = nada ; 0 = crear ; 1 = modificar ; 2 = eliminar ; 3 = buscar -->
+		<!-- Se usa en panel.php para leer la accion y los datos -->
+		<input id="accEv" name="accionEv" value="-1" hidden>
+
+		<table id="tEventos" border="1" cellpadding="0" cellspacing="0" class="tabla tablaEventos">
+			<thead>
+				<tr class="ajaxTitle">
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th>Fecha Modificacion</th>
+					<th>Hora Modificacion</th>
+					<th>Descripcion</th>
+					<th>Autor</th>
+					<th>Miniatura</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for evento in allEventos %}
+					<tr id="{{evento.id}}">
+					<td>{{evento.id}}</td>
+					<td>{{evento.name}}</td>
+					<td>{{evento.date}}</td>
+					<td>{{evento.time}}</td>
+					<td>{{evento.dateM}}</td>
+					<td>{{evento.timeM}}</td>
+					<td>{{evento.description}}</td>
+					<td>{{evento.author}}</td>
+					<td>{{evento.thumbnail}}</td>
+					<td width="10%">
+						<span name="editarEv" align="center" class="oculto" onclick="editado(this,'tEventos','modificaEventos')"><a href="javascript:;" id={{comentario.id}} class="ajaxEdit" ><img src="./images/edit.png" width="32" height="32" class="eimage"></a> </span>
+						<span name="borrarEv" align="center" class="oculto" onclick="borrado(this,'tEventos','eliminaEventos')"><a href="javascript:;" id={{comentario.id}} class="ajaxDelete"><img src="images/remove.png" width="32" height="32" class="dimage"></a> </span></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<button id="nuevoEv"  type="button" onclick="crearFila('tEventos')">Nuevo</button>
+		<button id="editarEv" type="button" onclick="editarFila('tEventos')" class="oculto">Editar</button>
+		<button id="borrarEv" type="button" onclick="eliminarFila('tEventos')" class="oculto">Borrar</button>
+		<input id="guardarEv" type="submit" value="Guardar" class="oculto">
+
+	</form>
+</div>
+<div id="seguroModEv">
+	<p id="pEdEv" class="oculto"> 'Pulse Aceptar para guardar los cambios o cancelar para anularlos'</p>
+		<input id="aceptarEdEv" type="button" class="boton oculto" onclick="modificaciones(this,'tEventos','modificaEventos')" value="Aceptar">
+		<input id="cancelarEdEv" type="button" class="boton oculto" onclick="" value="Cancelar">
+		<input id="ocultoEdEv" class="oculto">
+</div>
+
+
+<div id="eliminaEventos">
+<form action="index.php" method="post">
+	<input name="page" value="panel" hidden>
+	<!-- Input para saber que se intenta hacer en el panel -->
+	<!-- -1 = nada ; 0 = crear ; 1 = modificar ; 2 = eliminar ; 3 = buscar -->
+	<!-- Se usa en panel.php para leer la accion y los datos -->
+	<input id="accEvD" name="accionEvD" value="-1">
+	<input type="text" name="idEvD" id="idEvDH" class="oculto">
+	<table id="tEventosD" border="1" cellpadding="0" cellspacing="0" class="tabla tablaEventos">
+		<thead></thead>
+		<tbody>
+		<tr class="ajaxTitle">
+			<td>Id: <input type="text" id="idEvD" disabled></td>
+			<td>Nombre: <input type="text" id="nombreEvD" disabled></td>
+			<td>Fecha: <input type="text" id="fechaEvD" disabled></td>
+			<td>Hora: <input type="text" id="horaEvD" disabled></td>
+			<td>Fecha Modificaion: <input type="text" id="fechaEvMD" disabled></td>
+			<td>Hora Modificacion: <input type="text" id="horaEvMD" disabled></td>
+			<td>Descripcion: <textarea type="text" id="descripcionEvD" disabled></textarea></td>
+			<td>Autor: <input type="text" id="autorEvD" disabled></td>
+			<td>Miniatura: <input type="text" id="miniEvD" disabled></td>
+		</tr>
+		</tbody>
+	</table>
+		<input type="submit" value="si">
+		<input type="button" value="no">
+</form>
+</div>
+
+<div id="modificaEventos">
+<form action="index.php" method="post">
+	<input name="page" value="panel" hidden>
+	<!-- Input para saber que se intenta hacer en el panel -->
+	<!-- -1 = nada ; 0 = crear ; 1 = modificar ; 2 = eliminar ; 3 = buscar -->
+	<!-- Se usa en panel.php para leer la accion y los datos -->
+	<input id="accEvM" name="accionEvM" value="-1">
+	<input type="text" name="idEvM" id="idEvMH" class="oculto">
+	<input type="text" name="descripcionEvM" id="descripcionEvMH" class="oculto">
+	<input type="text" name="nombreEvM" id="nombreEvMH" class="oculto">
+	<input type="text" name="miniEvM" id="miniEvMH" class="oculto">
+	<table id="tEventosM" border="1" cellpadding="0" cellspacing="0" class="tabla tablaEventos">
+		<thead></thead>
+		<tbody>
+		<tr class="ajaxTitle">
+			<td>Id: <input type="text" id="idEvM" disabled></td>
+			<td>Nombre: <input type="text" id="nombreEvM" disabled></td>
+			<td>Fecha: <input type="text" id="fechaEvM" disabled></td>
+			<td>Hora: <input type="text" id="horaEvM" disabled></td>
+			<td>Fecha Modificaion: <input type="text" id="fechaEvMM" disabled></td>
+			<td>Hora Modificacion: <input type="text" id="horaEvMM" disabled></td>
+			<td>Descripcion: <input type="text" id="descripcionEvM" disabled></td>
+			<td>Autor: <input type="text" id="autorEvM" disabled></td>
+			<td>Miniatura: <input type="text" id="miniEvM" disabled></td>
+		</tr>
+		</tbody>
+	</table>
+		<input type="submit" value="si">
+		<input type="button" value="no">
+</form>
+</div>
+{% endblock %}

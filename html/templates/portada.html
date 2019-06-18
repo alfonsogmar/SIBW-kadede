@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block alltags %}
+	<div id="tag-menu">
+		<h3>Etiquetas</h3>
+		{% for t in tags %}
+			<div class="tag-box">
+				<a class="tag-link" href="index.php?page=eventos_etiqueta&tag={{t.id}}">{{t.name}}</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
+
+{% block title %}Portada{% endblock %}
+
+{% block user %}<h3>Bienvenido {{user}}, Disfruta tu estancia</h3>{% endblock %}
+
+{% block main %}
+	<h2>Quedadas disponibles</h2>
+	{% for event in events%}
+	<figure class="thumbnail-with-text">
+		<a href="./index.php?page=evento&event={{event.id}}">
+			<img src="./images/{{event.thumbnail}}" class="thumbnail" />
+		</a>
+		<figcaption><a href="./index.php?page=evento&event={{event.id}}" class="tumbnail-text">{{event.name}}</a></figcaption>
+	</figure>
+	{% endfor %}
+{% endblock %}

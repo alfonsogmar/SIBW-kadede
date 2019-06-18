@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block title %}Portada{% endblock %}
+
+
+{% block main %}
+	<h2>Quedadas disponibles con etiqueta: {{tag}}</h2>
+	{% for event in events%}
+	<figure class="thumbnail-with-text">
+		<a href="./index.php?page=evento&event={{event.id}}">
+			<img src="./images/{{event.thumbnail}}" class="thumbnail" />
+		</a>
+		<figcaption><a href="./index.php?page=evento&event={{event.id}}" class="tumbnail-text">{{event.name}}</a></figcaption>
+	</figure>
+	{% endfor %}
+{% endblock %}

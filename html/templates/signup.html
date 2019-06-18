@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Registrarse{% endblock %}
+
+
+{% block user %}<!--<h3>Bienvenido {{user}}, Disfruta tu estancia</h3>-->{% endblock %}
+
+
+{% block main %}
+	<h2>Regístrate</h2>
+	<h4>¡Regístrate en kadede.es para añadir comentarios a los eventos!</h4>
+	<form name="login-form" method="post" action="index.php">
+		<label for="signup-email">Correo electrónico</label> <br>
+		<input name="signup-email" class="form-input" type="text" size="30" required> <br>
+		<p class="error-msg">{{email_error}}</p>
+		<label for="signup-name">Nombre</label> <br>
+		<input name="signup-name" class="form-input" type="text" size="30" required> <br> <br>
+		<label for="signup-date">Fecha de nacimiento</label> <br> <!-- ¿Comprobar si es mayor de edad? -->
+		<input name="signup-date" class="form-input" type="date"> <br> <br>
+		<label for="signup-passwd">Contraseña</label> <br>
+		<input name="signup-passwd" class="form-input" type="password"  size="30" required> <br>  <br>
+		<label for="signup-passwd2">Confirmar contraseña</label> <br>
+		<input name="signup-passwd2" class="form-input" type="password"  size="30" required> <br>
+		<p class="error-msg">{{password_error}}</p>
+		<input class="fancy-button" name="submit-button" type="submit" value="Registrarse">
+	</form>
+
+
+
+{% endblock %}

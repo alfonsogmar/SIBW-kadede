@@ -1,0 +1,180 @@
+﻿.h2Imprimible {
+	font-size: 30px;
+	margin:8%;
+}
+
+.h3Imprimible {
+	font-size: 17px;
+	margin-top:-4%;
+}
+
+.h4Imprimible {
+	font-size: 17px;
+	margin-top:-2%;
+}
+
+.pImprimible {
+	text-align: justify;
+	font-size: 16px;
+	text-indent: 30px;
+}
+
+/* Cabecera de versión imprimible
+   con logotipo cambiado de posición */
+.headerImprimible {
+	margin: 0;
+	margin-left:-5.5%;
+	margin-top:-2.5%;
+	padding: 1%;
+	float:left;
+	width: 237.5mm;
+	display: block;
+	z-index: 3;
+	top:0;
+	overflow: visible;
+}
+
+#printable-main-title{
+	/*margin:5px;*/
+	font-size: 50px;
+	letter-spacing: 1px;
+	/*font-family: helvetica;*/
+	text-decoration: none;
+	color: #000000
+}
+
+#printable-logo {
+	width: 188px;
+	//margin:10px;
+	margin-right: 708px;
+	margin-top: -103px;
+}
+
+.main-contentImprimible {
+	float: center;
+	font-family: serif;
+	overflow: auto;
+	width:73%;
+	padding-left:12%;
+	margin: 3%;
+}
+
+.imagenImprimibleIzq{
+	width: 913px;
+	height: 388px;
+	float:left;
+	margin-left:-14%;
+	margin-top: -6%;
+}
+
+.imagenImprimibleDer{
+	width: 200px;
+	float:right;
+	margin-top:-6%;
+	margin-right:15%;
+}
+
+.event-textIzq {
+	color: #444444;
+	font-family: helvetica;
+	font-size: 13px;
+	position:relative;
+	top: 150px;
+	left: -303px;
+}
+.event-textDer {
+	color: #444444;
+	font-family: helvetica;
+	font-size: 13px;
+	position:relative;
+	top: 16px;
+	left: 430px;
+	width:150px;
+}
+.eventC-textIzq {
+	color: #444444;
+	font-family: helvetica;
+	font-size: 9px;
+	position:relative;
+	top:155px;
+	right:303px;
+}
+.eventC-textDer {
+	color: #444444;
+	font-family: helvetica;
+	font-size: 9px;
+	position:relative;
+	top:22px;
+	left:147px;
+}
+
+.footerImprimible {
+	margin: 0px;
+	margin-top:-8px;
+	margin-left:-20px;
+	padding: 15px;
+	bottom: 0px;
+	width: 233.5mm;
+	font-size: 20px;
+	letter-spacing: 1px;
+	z-index: 3;
+	height:30px;
+	float:left;
+	bottom:0;
+	position:relative;
+}
+
+
+#sloganImprimible{
+	font-size: 15px;
+	letter-spacing: 1px;
+	margin: 30px;
+    	margin-top: -48px;
+    	margin-left: 52px;
+	font-family: Verdana;
+}
+
+#contactImprimible {
+	margin-right: 11vw;
+	float:left;
+}
+
+
+
+#copyrightImprimible{
+	margin:5px;
+	margin-left:0px;
+	font-size: 15px;
+}
+
+#left{
+	padding: 10px; 
+	float: left; 
+	width: 45%; 
+	text-align: justify;
+}
+
+#right{
+	padding: 10px; 
+	float: right;
+	width: 45%; 
+	text-align: justify;	
+}
+
+.imprimible{
+	background: #ffffff;
+  font-family: Arial;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #000000;
+}
+
+.dinA4{
+	text-align:center;
+	width: 210mm;
+  height: 297mm;
+  padding: 20px 60px;
+  border: 1px solid #D2D2D2;
+  background: #ffffff;
+  margin: 10px auto;
+}

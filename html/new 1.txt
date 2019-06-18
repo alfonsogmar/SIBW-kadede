@@ -1,0 +1,185 @@
+<!--<div id="eliminaEtiquetas">
+			<form action="index.php" method="post">					
+				<input name="page" value="panel" hidden>
+				<!-- Input para saber que se intenta hacer en el panel -->
+				<!-- -1 = nada ; 0 = crear ; 1 = modificar ; 2 = eliminar ; 3 = buscar -->
+				<!-- Se usa en panel.php para leer la accion y los datos -->
+				<!--<input id="accED" name="accionED" value="-1">
+				<input type="text" name="idED" id="idEDH" class="oculto">
+				<table id="tEtiquetasD" border="1" cellpadding="0" cellspacing="0" class="tabla tablaEtiquetas">
+					<thead></thead>
+					<tbody>
+					<tr class="ajaxTitle">
+						<td>Nombre: <input type="text" id="idED" disabled></td>
+						<td>Numero de Eventos: <input id="fechaED" type="text" disabled></td>
+					</tr>
+					</tbody>
+				</table>
+					<input type="submit" value="si">
+					<input type="button" value="no">
+			</form>
+		</div>		-->
+		
+		
+		
+		// Obtenemos la variable 'page'
+		if(isset($_POST['page']) and file_exists($_POST['page'].'.php') ) {
+			$page = $_POST['page'];
+		}
+		
+		// Editar Datos NO HECHO
+		if(isset($_POST['nombre']) and isset($_POST['descripcion']) and
+		isset($_POST['idEvento']) and isset($_POST['accionM'])) {
+			
+		}
+		
+		// Nuevo comentario
+		if(isset($_POST['nombreC']) and isset($_POST['descripcionC']) and
+		isset($_POST['idEventoC']) and isset($_POST['accionC'])) {
+			$nombreC=$_POST['nombreC'];
+			$emailC=$_POST['emailC'];
+			$descripcionC = $_POST['descripcionC'];
+			$eventC = $_POST['idEventoC'];
+			$accionC = $_POST['accionC'];
+			$Ip = get_ip_address();
+			$hoy = getdate();
+
+			for ($i = 0; $i < count($nombreC); $i++) {
+				$save = $database->saveComent($eventC[$i],$Ip,$nombreC[$i],$emailC[$i],$hoy,$descripcionC[$i]);
+			}
+		}
+		
+		// Editar comentario  NO HECHO
+		if(isset($_POST['idC']) and isset($_POST['descripcionC']) 
+		and isset($_POST['accionC'])) {
+			
+		}
+		
+		// Eliminar comentario NO HECHO
+		if(isset($_POST['idCD']) and isset($_POST['accionCD'])) {
+			if($_POST['accionCD']==2){
+				$id=$_POST['idCD'];
+				$saves = 0;//$database->borrarComentario($id);
+			}
+		}
+		
+		// Buscar comentario NO HECHO
+		if(isset($_POST['signup-email']) and isset($_POST['signup-name']) and
+		isset($_POST['signup-date']) and isset($_POST['signup-passwd']) and
+		isset($_POST['signup-passwd2'])) {
+			
+		}
+		
+		// Nueva etiqueta
+		if(isset($_POST['nombreE']) and isset($_POST['eventoE'])
+		and isset($_POST['accionE'])) {
+			$nombreE = $_POST['nombreE'];
+			$eventE = $_POST['eventoE'];
+			$accionE = $_POST['accionE'];
+			
+			for ($i = 0; $i < count($nombreE); $i++) {
+				$save = $database->setNuevaEtiqueta($nombreE[$i]);				
+				$id =  $database->selectEtiqueta($nombreE[$i]);
+				$save = $database->setEtiquetaEvento($eventE[$i], $id);
+			}
+			
+		}
+		
+		// Eliminar etiqueta NO HECHO
+		if(isset($_POST['nombreE']) and isset($_POST['accionE'])) {
+			
+		}
+		
+		// Nuevo Evento
+		if(isset($_POST['nombreEv']) and isset($_POST['descripcionEv']) and
+		isset($_POST['autorEv']) and isset($_POST['miniaturaEv']) 
+		and isset($_POST['accionEv'])) {
+			$nombreEv=$_POST['nombreEv'];
+			$descripcionEv = $_POST['descripcionEv'];
+			$autorEv = $_POST['autorEv'];
+			$miniaturaEv = $_POST['miniaturaEv'];
+			$hoy = getdate();
+
+			for ($i = 0; $i < count($nombreEv); $i++) {
+				$save = $database->setEvento ($nombreEv[$i],$hoy,$autorEv[$i],$descripcionEv[$i],$miniaturaEv[$i]);
+				echo'<script type="text/javascript">
+			alert('.$save.');
+			</script>';
+			}
+		}
+		
+		// Editar Evento NO HECHO
+		if(isset($_POST['idEv']) and isset($_POST['nombreEv']) 
+		and isset($_POST['descripcionEv']) and isset($_POST['miniaturaEv'])
+		and isset($_POST['accionEv'])) {
+			
+		}
+		
+		// Eliminar Evento NO HECHO
+		if(isset($_POST['idEv']) and isset($_POST['accionEv'])) {
+			
+		}
+		
+		// Buscar Evento NO HECHO
+		if(isset($_POST['signup-email']) and isset($_POST['signup-name']) and
+		isset($_POST['signup-date']) and isset($_POST['signup-passwd']) and
+		isset($_POST['signup-passwd2'])) {
+			
+		}
+		
+		// Nueva Imagen
+		if(isset($_POST['nombreIm']) and isset($_POST['rutaIm']) and
+		isset($_POST['pieIm']) and isset($_POST['creditosIm']) and 
+		isset($_POST['rutaCreditosIm']) and isset($_POST['eventoIm'])
+		and isset($_POST['accionI'])) {
+			
+			$nombreIm=$_POST['nombreIm'];
+			$rutaIm=$_POST['rutaIm'];
+			$pieIm = $_POST['pieIm'];
+			$creditosIm = $_POST['creditosIm'];
+			$rutaCreditosIm=$_POST['rutaCreditosIm'];
+			$eventoIm = $_POST['eventoIm'];
+			
+			for ($i = 0; $i < count($nombreIm); $i++) {
+				echo'<script type="text/javascript">
+			alert($nombreIm[$i]);
+			</script>';
+			$save = $database->setFotografia($nombreIm[$i],$pieIm[$i],$rutaIm[$i],$creditosIm[$i],$rutaCreditosIm[$i],$eventoIm[$i]);
+				
+			}
+		}
+		
+		// Eliminar Imagen NO HECHO
+		if(isset($_POST['idIm']) and isset($_POST['accionI'])) {
+			
+		}
+		
+		// Editar Rol NO HECHO
+		if(isset($_POST['emailU']) and isset($_POST['rolU'])
+		and isset($_POST['accionU'])) {
+			
+		}
+	}
+		
+		if(isset($_SESSION['email'])) {
+			$birthdate = $database->getUserBirthdate($_SESSION['email']);
+			$allComentarios = $database->todosComentarios();
+			$allEtiquetas = $database->todasEtiquetas();
+			$allEventos = $database->todosEventos();
+			$allImagenes = $database->todasImagenes();
+			$allUsuarios = $database->todosUsuarios();
+		}
+	}
+	else if($page == "editar_comentario") {
+		if (!empty($_GET)){
+			if(isset($_GET{"edit_comment"})) {
+				$comment_to_be_edited_id = $_GET{"edit_comment"};
+				$comment_to_be_edited_text = $database->getCommentDescription($comment_to_be_edited_id);
+			}
+			else {
+				$page = 'portada';
+			}
+		}
+		else {
+			$page = 'portada';
+		}

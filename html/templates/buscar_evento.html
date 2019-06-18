@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Buscar evento{% endblock %}
+
+
+
+{% block main %}
+	<h2>Buscar evento</h2>
+	<form name="search-event-form" method="post" action="index.php">
+		<input id="search-event-text" name="search-event-text" type="text" onKeyUp="busquedaDinamica();"></input> <br>
+		<input class="fancy-button" name="search-event-submit" type="submit" value="Buscar">
+		<input class="fancy-button" type="reset" value="Borrar">
+	</form>
+	<div id="resultadoBusqueda"></div>
+{% endblock %}

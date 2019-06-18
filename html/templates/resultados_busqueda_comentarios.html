@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados de la búsqueda: {{searched}}{% endblock %}
+
+{% block main %}
+<h2>Resultados de la búsqueda</h2>
+
+<div class="container home">
+	<form action="index.php" method="post">
+		<input name="page" value="panel" hidden>
+		<!-- -1 = nada ; 0 = crear ; 1 = modificar ; 2 = eliminar ; 3 = buscar -->
+		<!-- Se usa en panel.php para leer la accion y los datos -->
+		<input id="accC" name="accionC" value="-1" hidden>
+
+		<table id="tComentarios" border="1" cellpadding="0" cellspacing="0" class="tabla tablaComentarios">
+			<thead>
+				<tr class="ajaxTitle">
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th>Email</th>
+					<th>Descripcion</th>
+					<th>Ip</th>
+					<th>Id Evento</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for comentario in allComentarios %}
+					<tr id="{{comentario.id}}">
+					<td>{{comentario.id}}</td>
+					<td>{{comentario.name}}</td>
+					<td>{{comentario.date}}</td>
+					<td>{{comentario.time}}</td>
+					<td>{{comentario.email}}</td>
+					<td>{{comentario.description}}</td>
+					<td>{{comentario.ip}}</td>
+					<td>{{comentario.event_id}}</td>
+				{% endfor %}
+			</tbody>
+		</table>
+		<button id="editarC" type="button" onclick="editarFila('tComentarios')" class="oculto">Editar</button>
+		<button id="borrarC" type="button" onclick="eliminarFila('tComentarios')" class="oculto">Borrar</button>
+		<input id="guardarC" type="submit" value="Guardar" class="oculto">
+	</form>
+</div>
+<div id="seguroModCom">
+	<p id="pEdC" class="oculto"> 'Pulse Aceptar para guardar los cambios o cancelar para anularlos'</p>
+		<input id="aceptarEdC" type="button" class="boton oculto" onclick="modificaciones(this,'tComentarios','modificaComentarios')" value="Aceptar">
+		<input id="cancelarEdC" type="button" class="boton oculto" onclick="" value="Cancelar">
+		<input id="ocultoEdC" class="oculto">
+</div>
+
+
+<div id="eliminaComentarios">
+	<form action="index.php" method="post">
+		<input name="page" value="panel" hidden>
+		<!-- Input para saber que se intenta hacer en el panel -->
+		<!-- -1 = nada ; 0 = crear ; 1 = modificar ; 2 = eliminar ; 3 = buscar -->
+		<!-- Se usa en panel.php para leer la accion y los datos -->
+		<input id="accCD" name="accionCD" value="-1">
+		<input type="text" name="idCD" id="idCDH" class="oculto">
+		<table id="tComentariosD" border="1" cellpadding="0" cellspacing="0" class="tabla tablaComentarios">
+			<thead></thead>
+			<tbody>
+			<tr class="ajaxTitle">
+
+				<td>Id: <input type="text" id="idCD" disabled></td>
+				<td>Fecha: <input type="text" id="fechaCD" disabled></td>
+				<td>Hora: <input type="text" id="horaCD" disabled></td>
+				<td>Id Evento: <input type="text" id="idEvCD" disabled></td>
+			</tr>
+			<tr class="ajaxTitle">
+				<td>Descripcion: <textarea type="text" id="descripcionCD" disabled></textarea></td>
+				<td>Nombre: <input type="text" id="nombreCD" disabled></td>
+				<td>Email: <input type="text" id="emailCD" disabled></td>
+				<td>Ip: <input id="ipCD" type="text" disabled></td>
+
+			</tr>
+			</tbody>
+		</table>
+			<input type="submit" value="si">
+			<input type="button" value="no">
+	</form>
+</div>
+
+<div id="modificaComentarios">
+	<form action="index.php" method="post">
+		<input name="page" value="panel" hidden>
+		<!-- Input para saber que se intenta hacer en el panel -->
+		<!-- -1 = nada ; 0 = crear ; 1 = modificar ; 2 = eliminar ; 3 = buscar -->
+		<input id="accCM" name="accionCM" value="-1" hidden>
+		<input type="text" name="idCM" id="idCMH" class="oculto">
+		<input type="text" name="descripcionCM" id="descripcionCMH" class="oculto">
+		<table id="tEtiquetasD" border="1" cellpadding="0" cellspacing="0" class="tabla tablaEtiquetas">
+			<thead></thead>
+			<tbody>
+			<h2>Se va a proceder a modificar el comentario, ¿Está seguro?</h2>
+			<tr class="ajaxTitle">
+				<td>Id: <input type="text" id="idCM" disabled></td>
+				<td>Fecha: <input type="text" id="fechaCM" disabled></td>
+				<td>Hora: <input type="text" id="horaCM" disabled></td>
+				<td>Id Evento: <input type="text" id="idEvCM" disabled></td>
+			</tr>
+			<tr class="ajaxTitle">
+				<td>Descripcion: <textarea type="text" id="descripcionCM" disabled></textarea></td>
+				<td>Nombre: <input type="text" id="nombreCM" disabled></td>
+				<td>Email: <input type="text" id="emailCM" disabled></td>
+				<td>Ip: <input id="ipCM" type="text" disabled></td>
+
+			</tr>
+			</tbody>
+		</table>
+			<input type="submit" value="si">
+			<input type="button" value="no">
+	</form>
+</div>
+
+
+{% endblock %}
